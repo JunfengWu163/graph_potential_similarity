@@ -16,13 +16,13 @@ Here's a simple example of how to use the Graph Potential Similarity package:
 import graph_potential_similarity as gps
 
 # an example of computing distance from SMILES strings
-sim1 = gps.smiles_distance('FC(Cl)(Cl)C(F)(F)OC(F)(F)Cl', 'FC(F)(F)C(Cl)(Cl)OC(F)(F)Cl')
+sim1 = 1.0 - gps.smiles_distance('FC(Cl)(Cl)C(F)(F)OC(F)(F)Cl', 'FC(F)(F)C(Cl)(Cl)OC(F)(F)Cl')
 print(f"The similarity between the two chemical compounds is: {sim1}")
 
 # another example, compute distance from DNA sequences
 seq1 = "GGACCGACAGGAATTCGCTCCTTAGGACGTTATAGTTACGGCCGCCGTTTACTGGGGCTTCAATTCGCAGCTTCGC"
 seq2 = "AGCGAACGCTGGCGGCATGCTTAACACATGCAAGTCGCACGAAGGCTTCGGCCTTAGTGGCGGACGGGTGAGTAAC"
-sim2 = gps.double_helix_distance(seq1,seq2)
+sim2 = 1.0 - gps.double_helix_distance(seq1,seq2)
 print(f"The similarity between the two DNA sequences is: {sim2}")
 ```
 
