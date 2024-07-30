@@ -37,6 +37,7 @@ This project was made possible by the following resources and contributions:
 - **He, J., Chen, J., Huang, G., Cao, J., Zhang, Z., Zheng, H., ... & Van Zundert, A. (2021).** "A polynomial‐time algorithm for simple undirected graph isomorphism." *Concurrency and Computation: Practice and Experience*, 33(7), 1-1. This paper provided foundational insights and algorithms that were instrumental in the development of this package.
 - **RDKit**: An open-source cheminformatics software that was used for chemical compound structure analysis.
 - **NumPy**: A fundamental package for scientific computing with Python, which was used extensively for numerical operations.
+- **SciPy**: An open-source Python library used for scientific and technical computing, which provided additional functionality for optimization, integration, and other advanced mathematical operations.
 
 We are grateful for the contributions of these resources and the support of the open-source community.
 

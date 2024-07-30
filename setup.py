@@ -7,6 +7,7 @@ setup(
     install_requires=[
         # List your package dependencies here
         'numpy',
+        'scipy',
         'rdkit'
     ],
     author='Junfeng Wu',
