@@ -3,6 +3,7 @@ from .conMatrix import ConMatrix
 from .gauss import gauss
 from .RrefResult import RrefResult
 from .calShiNum import cal_shi_num
+from .directed_potential_graph import directed_potential_graph
 from rdkit import Chem
 import numpy as np
 
@@ -13,7 +14,10 @@ class Distance:
     Ecm2 = None
 
     @staticmethod
-    def cal(m1, m2, dist_type = 'continuous', decimal_precision = 6):
+    def cal(m1, m2, dist_type = 'original', decimal_precision = 6):
+        if dist_type == 'hop_tree':
+            return 1.0 - Distance.cal_hop_tree_sim(m1.get_v_complete(), m2.get_v_complete())
+        
         Distance.Vcm1 = ConMatrix()
         Distance.Vcm2 = ConMatrix()
         Distance.Ecm1 = ConMatrix()
@@ -34,6 +38,12 @@ class Distance:
             elif (distance := Distance.calS3()) != 0.0:
                 return distance
             return 0.0
+    
+    @staticmethod
+    def cal_hop_tree_sim(m1,m2):
+        g1 = directed_potential_graph(m1)
+        g2 = directed_potential_graph(m2)
+        return g1.get_similarity(g2)
     
     @staticmethod
     def get_graph_matrix(mol, atom_refs, ref_ids):
