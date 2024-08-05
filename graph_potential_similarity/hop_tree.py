@@ -81,4 +81,16 @@ class hop_tree:
     
     def get_similarity(self,other):
         return hop_tree.tree_sim(self.tree,other.tree)
+    
+    @staticmethod
+    def tree_to_seq(tree,level:int):
+        if level < 0:
+            return []
+        s = [tree[0]]
+        for i in range(1,len(tree)):
+            s += hop_tree.tree_to_seq(tree[i],level-1)
+        return s
+        
+    def to_seq(self,level:int):
+        return hop_tree.tree_to_seq(self.tree,level)
         

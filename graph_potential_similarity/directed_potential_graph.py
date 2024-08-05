@@ -16,7 +16,7 @@ class directed_potential_graph:
         assert i < self.n and i >= 0
         if not i in self.edges:
             return [1]
-        total_weight = 0
+        total_weight = 1
         subtrees = []
         new_visited = visited.union(set(self.edges[i]))
         new_visited.add(i)
@@ -41,10 +41,22 @@ class directed_potential_graph:
         return sorted(hop_trees, reverse=True)
     
     def get_similarity(self, other):
+        max_level = 3
+        sim = 0.0
         n1 = len(self.hop_trees)
         n2 = len(other.hop_trees)
-        mat = np.zeros(shape=(n1,n2))
-        for i1 in range(n1):
-            for i2 in range(n2):
-                mat[i1,i2] = hop_tree.tree_sim(self.hop_trees[i1].tree, other.hop_trees[i2].tree)
-        return edit_similarity(mat)
+        for level in range(max_level):
+            s1 = []
+            for i in range(n1):
+                s1 += self.hop_trees[i].to_seq(level)
+            s2 = []
+            for i in range(n2):
+                s2 += other.hop_trees[i].to_seq(level)
+            mat = np.zeros(shape=(len(s1),len(s2)))
+            # print(f's1 = {s1}')
+            # print(f's2 = {s2}')
+            for i1 in range(len(s1)):
+                for i2 in range(len(s2)):
+                    mat[i1,i2] = min(s1[i1],s2[i2]) / max(s1[i1],s2[i2])
+            sim += edit_similarity(mat) / max_level
+        return sim
