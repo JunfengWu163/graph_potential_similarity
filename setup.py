@@ -8,6 +8,7 @@ setup(
         # List your package dependencies here
         'numpy',
         'scipy',
+        'numba',
         'rdkit'
     ],
     author='Junfeng Wu',

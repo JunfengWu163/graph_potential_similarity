@@ -41,8 +41,8 @@ class Distance:
     
     @staticmethod
     def cal_hop_tree_sim(m1,m2):
-        g1 = directed_potential_graph(m1)
-        g2 = directed_potential_graph(m2)
+        g1 = directed_potential_graph(m1,max_hop=2)
+        g2 = directed_potential_graph(m2,max_hop=2)
         return g1.get_similarity(g2)
     
     @staticmethod
@@ -62,6 +62,7 @@ class Distance:
 
     @staticmethod
     def from_smiles(smiles1, smiles2, dist_type = 'continuous', decimal_precision = 6):
+        print('creating graphs')
         # get molecules from SMILES strings
         mol1 = Chem.MolFromSmiles(smiles1)
         mol2 = Chem.MolFromSmiles(smiles2)
@@ -92,6 +93,7 @@ class Distance:
         m2 = Matric2(v_matrix=Distance.get_graph_matrix(mol2, atom_refs_2, ref_ids))
 
         # compute distance
+        print('computing distasnce')
         return Distance.cal(m1, m2, dist_type, decimal_precision)
 
     @staticmethod
@@ -156,10 +158,12 @@ class Distance:
     @staticmethod
     def from_double_helix(seq1, seq2, dist_type = 'continuous', decimal_precision = 6):
         # get graph matrices:
+        print('creating graphs')
         m1 = Matric2(v_matrix=Distance.get_double_helix_mat(seq1))
         m2 = Matric2(v_matrix=Distance.get_double_helix_mat(seq2))
 
         # compute distance
+        print('computing distasnce')
         return Distance.cal(m1, m2, dist_type, decimal_precision)
     
     # A complex graph refers to a graph with cycles, multi-edges, and self-loops.
