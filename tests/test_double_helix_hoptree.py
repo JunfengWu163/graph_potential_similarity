@@ -27,10 +27,9 @@ class TestDoubleHelix(unittest.TestCase):
             output_matrix[i][i] = 0
             for j in range(i + 1, n):
                 dist = gps.double_helix_distance(seqs[i],seqs[j],dist_type='hop_tree')
-                sim = 1.0 - dist
-                output_matrix[i][j] = sim
-                output_matrix[j][i] = sim
-                print(f'{i},{j}:{sim}')
+                output_matrix[i][j] = dist
+                output_matrix[j][i] = dist
+                print(f'{i},{j}:{dist}')
                 # diff = abs(dist - dists[i][j])
                 # self.assertLessEqual(diff, 1e-10)
         for i in range(n):

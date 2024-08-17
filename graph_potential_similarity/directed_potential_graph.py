@@ -168,10 +168,4 @@ class directed_potential_graph:
         sim = 0.0
         s1 = self.current_seq
         s2 = other.current_seq
-        n1 = s1.shape[0]
-        n2 = s2.shape[0]
-        mat = np.zeros(shape=(n1,n2))
-        for i1 in range(n1):
-            for i2 in range(n2):
-                mat[i1,i2] = (min(s1[i1],s2[i2]) + 1) / (max(s1[i1],s2[i2]) + 1)
-        return edit_similarity(mat)
+        return edit_similarity(s1, s2)
