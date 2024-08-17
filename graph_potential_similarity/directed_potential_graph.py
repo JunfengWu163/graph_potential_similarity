@@ -162,7 +162,7 @@ class directed_potential_graph:
                     pos += 1
                     src_pos += 1
         self.current_hop += 1
-        print(f'n = {self.n}, hop = {self.current_hop}, seqLen = {self.current_seq.shape[0]}')
+        # print(f'n = {self.n}, hop = {self.current_hop}, seqLen = {self.current_seq.shape[0]}')
 
     def get_similarity(self, other):
         sim = 0.0
